@@ -3,15 +3,18 @@
   "private": true,
   "packageManager": "pnpm@10.34.3+sha512.f2c531b08829d7be7f03c90addc266615f9c5477463e4bf1d275cb263ce9ea57cf0d5599110d94649a9bb3fed9f0b5efcea74a7016b61532a24cb9ad87860c1d",
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
+    "dev": "pnpm dev:db && concurrently -k -n server,web -c green,magenta \"pnpm dev:server\" \"pnpm dev:web\"",
     "build": "pnpm -r build",
     "format": "prettier --write --ignore-unknown .",
     "format:check": "prettier --check --ignore-unknown .",
+    "dev:db": "pnpm --dir server exec prisma dev --detach",
+    "dev:db:foreground": "pnpm --dir server exec prisma dev",
+    "dev:db:stop": "pnpm --dir server exec prisma dev stop default",
     "dev:web": "pnpm --filter web dev",
-    "dev:api": "pnpm --filter api dev",
-    "dev:executor": "pnpm --filter executor dev"
+    "dev:server": "pnpm --filter server dev"
   },
   "devDependencies": {
+    "concurrently": "^10.0.3",
     "prettier": "^3.8.4",
     "prettier-plugin-tailwindcss": "^0.8.0"
   }
