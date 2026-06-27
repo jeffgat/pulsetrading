@@ -44,6 +44,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["index.ts"],
+  "include": ["index.ts", "routes.ts", "rithmic.ts", "prisma.config.ts"],
   "exclude": ["dist", "node_modules"]
 }
